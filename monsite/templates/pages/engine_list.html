@@ -1,0 +1,48 @@
+{% extends "bases/base.html" %}
+{% block head %}
+<style>
+    body {
+        padding-top: 120px; /* Ajustez cette valeur pour correspondre à la hauteur de votre en-tête */
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+        color: black; /* Changement de la couleur du texte en noir foncé */
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+{% endblock head %}
+{% block content%}
+    <h1>Liste des Moteurs</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>N°AV</th>
+                <th>N° MOTEUR</th>
+                <th>TSO</th>
+                <th>TSN</th>
+                <th>DATE PROCH. RG</th>
+                <th>OBS</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for engine in engines %}
+                <tr>
+                    <td>{{ engine.av_number }}</td>
+                    <td>{{ engine.engine_number }}</td>
+                    <td>{{ engine.tso }}</td>
+                    <td>{{ engine.tsn }}</td>
+                    <td>{{ engine.next_rg_date }}</td>
+                    <td>{{ engine.observation }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock content%}

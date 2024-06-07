@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		
+        <!-- meta data -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!--font-family-->
+		
+        <!-- title of site -->
+		
+		{% block head %}
+		<title>Bravo-{% block title %} {% endblock title %} </title>
+
+        <!-- For favicon png -->
+		<link rel="shortcut icon" type="image/icon" href="{% static 'assets/logo/favicon.png' %}"/>
+		{% endblock head %}
+        
+       
+        
+        
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        
+
+    </head>
+	<body>
+	{% block header%}
+	{% include "bases/header.html" %}
+    {% endblock header%}
+
+    {% block content%}
+    {% endblock content%}
+
+    {% block footer%}
+        {% include "bases/footer.html" %}
+    {% endblock footer%}
+		<!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+	
+		<!--welcome-hero start -->
+		
+		
+
+		
+		<!-- Include all js compiled plugins (below), or include individual files as needed -->
+	{% block stylesheets %}
+		<link href="{% static 'assets/css/fonts1.css' %}" rel="stylesheet">
+		<link href="{% static 'assets/css/fonts2.css' %}" rel="stylesheet">
+				
+		<!--font-awesome.min.css-->
+		<link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css'%}">
+
+		<!--linear icon css-->
+		<link rel="stylesheet" href="{% static 'assets/css/linearicons.css' %}">
+
+		<!--flaticon.css-->
+		<link rel="stylesheet" href="{% static 'assets/css/flaticon.cs' %}s">
+
+		<!--animate.css-->
+		<link rel="stylesheet" href="{% static 'assets/css/animate.css'%}">
+
+		<!--owl.carousel.css-->
+		<link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css'%}">
+
+		<!--bootstrap.min.css-->
+		<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}">
+
+		<!-- bootsnav -->
+		<link rel="stylesheet" href="{% static 'assets/css/bootsnav.css' %}" >	
+
+		<!--style.css-->
+		<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+		<!--responsive.css-->
+		<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %} ">
+	{% endblock stylesheets %}
+
+	{% block javascript %}
+
+		<script src="{% static 'assets/js/jquery.j'%}s"></script>
+
+		<!--modernizr.min.js-->
+		<script src="{% static 'assets/js/cdnjs1.js'%}"></script>
+
+		<!--bootstrap.min.js-->
+		<script src="{% static 'assets/js/bootstrap.min.js'%}"></script>
+
+		<!-- bootsnav js -->
+		<script src="{%static 'assets/js/bootsnav.js'%}"></script>
+
+		<!--owl.carousel.js-->
+		<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+
+		<script src="{% static 'assets/js/flare.js'%}"></script>
+
+		<!--Custom JS-->
+		<script src="{% static 'assets/js/custom.js'%}"></script>
+	{% endblock javascript %}
+	</body>
+	</html>

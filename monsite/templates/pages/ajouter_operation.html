@@ -1,0 +1,44 @@
+<h1>Ajouter une opération de maintenance</h1>
+{% if message %}
+    <p>{{ message }}</p>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="id_nom" class="form-label">Nom de l'opération</label>
+        {{ form.nom }}
+    </div>
+    <div class="mb-3">
+        <label for="id_maintenance_type" class="form-label">Type de maintenance</label>
+        {{ form.maintenance_type }}
+    </div>
+    <div class="mb-3" id="duree_limite_field" style="display: none;">
+        <label for="id_duree_limite" class="form-label">Durée limite</label>
+        {{ form.duree_limite }}
+    </div>
+    <div class="mb-3" id="date_limite_field" style="display: none;">
+        <label for="id_date_limite" class="form-label">Date limite</label>
+        {{ form.date_limite }}
+    </div>
+   
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+</form>
+
+<script>
+    document.getElementById('id_maintenance_type').addEventListener('change', function() {
+        var maintenanceType = this.value;
+        var dureeLimiteField = document.getElementById('duree_limite_field');
+        var dateLimiteField = document.getElementById('date_limite_field');
+
+        if (maintenanceType === 'horaire') {
+            dureeLimiteField.style.display = 'block';
+            dateLimiteField.style.display = 'none';
+        } else if (maintenanceType === 'calendaire') {
+            dureeLimiteField.style.display = 'none';
+            dateLimiteField.style.display = 'block';
+        } else {
+            dureeLimiteField.style.display = 'none';
+            dateLimiteField.style.display = 'none';
+        }
+    });
+</script>

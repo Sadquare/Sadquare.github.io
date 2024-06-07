@@ -1,0 +1,65 @@
+{% extends "bases/base.html" %}
+{% block content %}
+<style>
+    .table_container{
+        overflow-x: auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    tr:hover {
+        background-color: #dddddd;
+    }
+    body {
+        padding-top: 120px; /* Ajustez cette valeur pour correspondre à la hauteur de votre en-tête */
+    }
+</style>
+<form method="POST">
+    {% csrf_token %}
+    <div class="table_container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Avion</th>
+                    {% for operation in operations %}
+                        <th>{{ operation.nom }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <form>
+                    {% for avion in avions %}
+                        <tr>
+                            <td>{{ avion.numero_avion }}</td>
+                            {% for operation in operations %}
+                                <td>
+                                    {% for maintenance_heure in avion.maintenanceheure_set.all %}
+                                        {% if maintenance_heure.operation == operation %}
+                                        <input type="text" name="heure" value="{{maintenance_heure.heure}}">
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %} 
+                </form>
+            </tbody>
+        </table>
+    </div>
+    <button type="submit">Enregistrer les modifications</button>
+</form>
+
+{% endblock content %}

@@ -1,0 +1,76 @@
+{% extends "bases/base.html" %}
+{% block head %}
+    <title>Ajouter un besoin</title>
+    <style>
+        body {
+            padding-top: 10px; /* Ajustez cette valeur pour correspondre à la hauteur de votre en-tête */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        table {
+            width: 50%;
+            margin: auto; /* Centre le tableau horizontalement */
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 50px solid #ddd; /* Bordures autour des cellules */
+            padding: 8px;
+            text-align: left;
+        }
+        form {
+            width: 100%; /* Ajustez la largeur du formulaire selon vos préférences */
+            padding: 30px;
+            margin-top: 20px; /* Ajoute une marge supérieure au formulaire */
+            background-color: #f9f9f9; /* Couleur de fond du formulaire */
+            border: 1px solid #ddd; /* Bordure du formulaire */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px; /* Ajuste la marge supérieure du titre */
+            color: #333; /* Couleur du texte en noir foncé */
+        }
+        label {
+            color: #333; /* Couleur du texte en noir foncé */
+        }
+        .button {
+            display: block;
+            margin: 0px auto 0; /* Ajoute de l'espace en haut du bouton */
+            width: 100%; /* Le bouton occupe toute la largeur du formulaire */
+            background-color: #007bff; /* Couleur de fond bleue */
+            color: #fff; /* Texte du bouton en blanc */
+            border: none;
+            border-radius: 5px;
+            padding: 10px 0; /* Ajustez le rembourrage verticalement */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+{% endblock head %}
+{% block content %}
+    <h1>Ajouter un besoin</h1>
+    <br>
+    <table>
+        <form method="post">
+            {% csrf_token %}
+            <tr>
+                <td colspan="2">
+                    {{ form.as_table }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit"class="button">Enregistrer</button>
+                </td>
+            </tr>
+        </form>
+    </table>
+<br>
+{% endblock content %}

@@ -1,0 +1,123 @@
+{% extends "bases/base.html" %}
+{% block head %}
+    <title>Liste des Organes</title><Br>
+    <style>
+        body {
+            padding-top: 120px; /* Ajustez cette valeur pour correspondre à la hauteur de votre en-tête */
+        }
+        .tr_color {
+            color: red;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            color: black; /* Changement de la couleur du texte en noir foncé */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .ajouter-button {
+            margin-top: 20px; /* Ajoute une marge supérieure */
+            background-color: #007bff; /* Couleur bleue */
+            color: white;
+            border: 1px solid #007bff; /* Bordure bleue */
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        .ajouter-button:hover {
+            background-color: white;
+            color: #007bff;
+            border-color: #007bff;
+        }
+    </style>
+    {% endblock head %}
+    {% block content%}
+
+    <h1>Liste des Matériels Réparables</h1><Br>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>N° Avion</th>
+                <th>Hélice (5 ans)</th>
+                <th>Rég. hélice (5 ans)</th>
+                <th>Accu. vol dos (5 ans)</th>
+                <th>Moteur_12ans (12 ans)</th>
+                <th>Magnétos D (2000h)</th>
+                <th>Magnétos G (2000h)</th>
+                <th>Fuel pump (2000h)</th>
+                <th>Fuel injecter (1600h)</th>
+                <th>HDF actuel</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for organe in organes %}
+            <tr>
+                <td>{{ organe.numero_avion }}</td>
+
+                {% if organe.differences_hdf_actuel.helice_5ans == 1 %}
+                <td class="tr_color">{{ organe.helice_5ans }}</td>
+                {% else %}
+                <td>{{ organe.helice_5ans }}</td>
+                {% endif %}
+
+                {% if organe.differences_hdf_actuel.reg_helice_5ans == 1 %}
+                <td class="tr_color">{{ organe.reg_helice_5ans }}</td>
+                {% else %}
+                <td>{{ organe.reg_helice_5ans }}</td>
+                {% endif %}
+
+                {% if organe.differences_hdf_actuel.accu_vol_dos_5ans == 1 %}
+                <td class="tr_color">{{ organe.accu_vol_dos_5ans }}</td>
+                {% else %}
+                <td>{{ organe.accu_vol_dos_5ans }}</td>
+                {% endif %}
+
+                
+                <td>{{ organe.organe.Moteur_12ans }}</td>
+
+                {% if organe.differences_hdf_actuel.magnetos_D_2000h == 1 %}
+                <td class="tr_color">{{ organe.magnetos_D_2000h }}</td>
+                {% else %}
+                <td>{{ organe.magnetos_D_2000h }}</td>
+                {% endif %}
+
+                {% if organe.differences_hdf_actuel.magnetos_G_2000h == 1 %}
+                <td class="tr_color">{{ organe.magnetos_G_2000h }}</td>
+                {% else %}
+                <td>{{ organe.magnetos_G_2000h }}</td>
+                {% endif %}
+
+                {% if organe.differences_hdf_actuel.fuel_pump_2000h == 1 %}
+                <td class="tr_color">{{ organe.fuel_pump_2000h }}</td>
+                {% else %}
+                <td>{{ organe.fuel_pump_2000h }}</td>
+                {% endif %}
+
+                {% if organe.differences_hdf_actuel.fuel_injecter_1600h == 1 %}
+                <td class="tr_color">{{ organe.fuel_injecter_1600h }}</td>
+                {% else %}
+                <td>{{ organe.fuel_injecter_1600h }}</td>
+                {% endif %}
+
+                <td>{{ organe.hdf_actuel }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'myapp:jouter_HDV' %}" class="ajouter-button">Ajouter HDV</a><br>
+
+    {% endblock content%}
+
+    

@@ -1,0 +1,56 @@
+{% extends "bases/base.html" %}
+{% block head %}
+    <title>SITUATION MATERIEL REPARABLE AVIONIQUE</title>
+    <style>
+        body {
+            padding-top: 120px; /* Ajustez cette valeur pour correspondre à la hauteur de votre en-tête */
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            color: black; /* Changement de la couleur du texte en noir foncé */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+{% endblock head %}
+{% block content%}
+
+<h1>SITUATION MATERIEL REPARABLE AVIONIQUE</h1>
+<Br>
+<table>
+    <thead>
+        <tr>
+            <th>P/N</th>
+                <th>Designation</th>
+                <th>S/N</th>
+                <th>Avionnee</th>
+                <th>STE</th>
+                <th>BASG</th>
+                <th>Dispo Unite</th>
+                <th>Indispo Unite</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for materiel in materiels %}
+        <tr>
+            <td>{{ materiel.part_number }}</td>
+                <td>{{ materiel.designation }}</td>
+                <td>{{ materiel.Serial_number }}</td>
+                <td>{{ materiel.avionnee }}</td>
+                <td>{{ materiel.ste }}</td>
+                <td>{{ materiel.basg }}</td>
+                <td>{{ materiel.dispo_unite }}</td>
+                <td>{{ materiel.indispo_unite }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content%}

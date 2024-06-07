@@ -1,0 +1,69 @@
+<h1>Ajouter une maintenance</h1>
+{% if message %}
+    <p>{{ message }}</p>
+{% endif %}
+<div class="container">
+    <form method="post" action="">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_avion">Avion</label>
+            {{ form.avion }}
+        </div>
+        <div class="mb-3">
+            <label for="id_operation">Opération</label>
+            {{ form.operation }}
+        </div>
+        <div class="mb-3" id="duree_limite_field" >
+            <label for="id_heure">Heure</label>
+            {{ form.heure }}
+        </div>
+        <div class="mb-3" id="date_limite_field" style="display: none;">
+            <label for="id_date_initial">Date de pose</label>
+            {{ form.date_initial }}
+        </div>
+
+        <div id="maintenance-type-container">resultat</div>
+        
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+<div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var operationField = document.getElementById('id_operation'); // Remplacez 'id_operation' par l'ID réel de votre champ 'opération'
+            var heureField = document.getElementById('id_heure'); // Remplacez 'id_heure' par l'ID réel de votre champ 'heure'
+            var dateInitialField = document.getElementById('id_date_initial'); // Remplacez 'id_date_initial' par l'ID réel de votre champ 'date_initial'
+
+            var div_heure = document.getElementById('duree_limite_field');
+            var div_date = document.getElementById('date_limite_field');
+        
+            operationField.addEventListener('change', function() {
+                var selectedOperationId = this.value; // Obtenez l'ID de l'opération sélectionnée
+        
+                // Effectuez une requête AJAX pour obtenir le type de maintenance associé à l'opération sélectionnée
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', '/get_maintenance_type/' + selectedOperationId, true);
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        var maintenanceType = xhr.responseText;
+        
+                        // Affichez ou masquez les champs en fonction du type de maintenance obtenu
+                        if (maintenanceType === 'horaire') {
+                            div_heure.style.display = 'block';
+                            div_date.style.display = 'none';
+                        }
+                        else if (maintenanceType === 'calendaire') {
+                            div_heure.style.display = 'none';
+                            div_date.style.display = 'block';
+                        }
+                        else {
+                            heureField.style.display = 'none';
+                            dateInitialField.style.display = 'none';
+                        }
+                    }
+                };
+                xhr.send();
+            });
+        });
+        
+    </script>

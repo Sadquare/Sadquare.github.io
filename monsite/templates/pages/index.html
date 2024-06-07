@@ -1,0 +1,22 @@
+{% extends "bases/base.html" %}
+{% block title %}Accueil{% endblock title %}
+
+{% block content %}
+<section id="home" class="welcome-hero">
+	<div class="container">
+		<div class="welcome-hero-txt">
+			<h2>LE SGMA2</h2>
+			<p>
+				AU SERVICE DES FORCES ROYALES AIR 
+			</p>
+			<button class="welcome-btn" onclick="window.location.href='{% url 'myapp:befra_info' %}'">BEFRA</button>
+
+
+		</div>
+	</div>
+</section><!--/.welcome-hero-->
+<!--welcome-hero end -->
+
+
+
+{% endblock content %}

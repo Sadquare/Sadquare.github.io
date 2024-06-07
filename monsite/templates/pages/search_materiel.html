@@ -1,0 +1,57 @@
+{% extends "bases/base.html" %}
+{% block head %}
+<style>
+    body {
+        padding-top: 120px; /* Ajustez cette valeur pour correspondre à la hauteur de votre en-tête */
+    }
+    .tr_color {
+        color: red;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        color: black; /* Changement de la couleur du texte en noir foncé */
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+{% endblock head %}
+<{% block content%}>
+
+<h1>Résultats de la recherche pour "{{ designation_query }}" :</h1>
+
+<div class="table_container">
+    <table>
+        <thead>
+            <tr>
+                <th>PN</th>
+                <th>Designation</th>
+                <th>UR</th>
+                <th>QTE</th>
+                <th>SUPPORT</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for materiel in materiels %}
+            <tr>
+                <td>{{ materiel.part_number }}</td>
+                <td>{{ materiel.designation }}</td>
+                <td>{{ materiel.unit }}</td>
+                <td>{{ materiel.quantity }}</td>
+                <td>{{ materiel.support }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content%}

@@ -1,0 +1,72 @@
+<!-- top-area Start -->
+<div class="top-area">
+	<div class="header-area">
+		<!-- Start Navigation -->
+		<nav class="navbar navbar-default bootsnav navbar-sticky navbar-scrollspy" data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
+			<div class="container">
+				<!-- Start Header Navigation -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+						<i class="fa fa-bars"></i>
+					</button>
+					<a class="navbar-brand mr-5" href="{% url 'myapp:index' %}">SGMA2/BRAVO AS202<span></span></a>
+				</div><!--/.navbar-header-->
+				<!-- End Header Navigation -->
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+					<ul class="nav navbar-nav ml-auto mr-5">
+						<li class="">
+							<a class="" href="{% url 'myapp:index' %}">Accueil</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Matériel</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+								<li><a class="dropdown-item" href="{% url 'myapp:organes_list' %}">Réparable</a></li>
+								<li><a class="dropdown-item" href="{% url 'myapp:matériels' %}">Rechange</a></li>
+								<li><a class="dropdown-item" href="{% url 'myapp:operations_maintenance' %}">Matériels_suivi</a></li>
+								<li><a class="dropdown-item" href="{% url 'myapp:parachute' %}">Parachutes</a></li>
+						
+								
+							</ul>
+						</li>
+						<!-- Ajouter des marges aux éléments dropdown -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Besoin</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+								<li><a class="dropdown-item" href="{% url 'myapp:ajouter_besoin' %}">ajouter_besoin</a></li>
+								<li><a class="dropdown-item" href="{% url 'myapp:liste_besoins' %}">liste_besoins</a></li>
+								
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Donnée logistique</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+								<li><a class="dropdown-item" href="{% url 'myapp:tuyauterie' %}">Tuyauterie</a></li>
+								<li><a class="dropdown-item" href="{% url 'myapp:tableau_situation_materiel' %}">Situation RPR</a></li>
+								<li><a class="dropdown-item" href="{% url 'myapp:engine_list' %}">Situation moteurs</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" {% if notifications_exist %}style="color:red"{% endif %}>Notification</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
+								<li><a class="dropdown-item" href="{% url 'myapp:operations_maintenance' %}" {% if notif_op > 0 %}style="color: red"{% endif %}>Matériels_suivi </a></li>
+								<li><a class="dropdown-item" href="{% url 'myapp:organes_list' %}" {% if notif_or > 0 %}style="color: red"{% endif %}>Réparables</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown5" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fa fa-user"></i> Profil
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown5">
+								<li><a class="dropdown-item" href="{% url 'myapp:admin_panel' %}">Admin</a></li>
+								<li><a class="dropdown-item" href="{% url 'auth_app:deconnexion' %}">Déconnexion</a></li>
+							</ul>
+						</li>
+					</ul><!--/.nav -->
+				</div><!-- /.navbar-collapse -->
+			</div><!--/.container-->
+		</nav><!--/nav-->
+		<!-- End Navigation -->
+	</div><!--/.header-area-->
+	<div class="clearfix"></div>
+</div><!-- /.top-area-->

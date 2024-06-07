@@ -1,0 +1,44 @@
+{% extends "bases/base.html" %}
+{% block head %}
+    <title>Tableau de Parachutes</title><Br>
+    <style>
+        body {
+            padding-top: 120px; /* Ajustez cette valeur pour correspondre à la hauteur de votre en-tête */
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            color: black; /* Changement de la couleur du texte en noir foncé */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+{% endblock head %}
+{% block content%}
+
+<h2>Tableau de Parachutes</h2>
+<Br>
+<table>
+    <thead>
+        <tr>
+            <th>N° Parachute</th>
+            <th>Proch.insp</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for parachute in parachutes %}
+        <tr>
+            <td>{{ parachute.numero }}</td>
+            <td>{{ parachute.prochaine_inspection }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content%}

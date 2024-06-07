@@ -1,0 +1,50 @@
+{% extends "bases/base.html" %}
+{% block head %}
+    <title>Liste des pièces</title>
+    <style>
+        /* Ajoutez du CSS pour styliser votre tableau */
+        body {
+            padding-top: 120px; /* Ajustez cette valeur pour correspondre à la hauteur de votre en-tête */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            color: black; /* Changement de la couleur du texte en noir foncé */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+{% endblock head %}
+{% block content%}
+<h1>Liste des pièces</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Désignation</th>
+            <th>P/N</th>
+            <th>Limite calendaire</th>
+            <th>OBS</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for piece in pieces %}
+        <tr>
+            <td>{{ piece.designation }}</td>
+            <td>{{ piece.pn }}</td>
+            <td>{{ piece.limite_calendaire }}</td>
+            <td>{{ piece.obs }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content%}

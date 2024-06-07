@@ -1,0 +1,67 @@
+{% extends "bases/base.html" %}
+{% block head %}
+<style>
+    body {
+        padding-top: 10px; /* Ajustez cette valeur pour correspondre à la hauteur de votre en-tête */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    label {
+        color: #333; /* Couleur du texte en noir foncé */
+    }
+    .button {
+        background-color: #007bff; /* Couleur de fond bleue */
+        color: white; /* Texte en blanc */
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px; /* Ajustez le rembourrage */
+        cursor: pointer;
+    }
+    .button:hover {
+        background-color: white;
+        color: #007bff;
+        border-color: #007bff;
+    }
+    table {
+        width: 50%;
+        margin: auto; /* Centre le tableau horizontalement */
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 50px solid #ddd; /* Bordures autour des cellules */
+        padding: 8px;
+        text-align: left;
+    }
+</style>
+{% endblock head %}
+{% block content %}
+<table>
+    <form method="post">
+        {% csrf_token %}
+        <tr>
+            <td>
+                <label for="avion_id">Choisir l'avion :</label>
+                <select name="avion_id" id="avion_id">
+                    {% for avion in avions %}
+                        <option value="{{ avion.id }}">{{ avion.numero_avion }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="heures_vol">Heures de vol (hh:mm) :</label>
+                <input type="text" name="heures_vol" id="heures_vol"required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit"class="button">Ajouter heures de vol</button>
+            </td>
+        </tr>
+    </form>
+</table>
+{% endblock content %}

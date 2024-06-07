@@ -1,0 +1,68 @@
+{% extends "bases/base.html" %}
+{% block head %}
+    <title>Liste des Besoins par Avion</title>
+    <style>
+        body {
+            padding-top: 120px; /* Ajustez cette valeur pour correspondre à la hauteur de votre en-tête */
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            color: black; /* Changement de la couleur du texte en noir foncé */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .imprimer-button {
+            border: 2px solid black; /* Définition de la bordure du bouton */
+            background-color: blue; /* Fond blanc */
+            color: white; /* Texte noir */
+            border-radius: 5px; /* Coins arrondis */
+            padding: 5px 10px; /* Espacement interne */
+            text-decoration: none; /* Pas de soulignement */
+        }
+        .imprimer-button:hover {
+            background-color: black; /* Fond noir au survol */
+            color: white; /* Texte blanc au survol */
+        }
+    </style>
+{% endblock head %}
+{% block content%}
+<h1>Liste des Besoins par Avion</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>N° Avion</th>
+            <th>Materiel</th>
+            <th>Quantité</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for avion in avions %}
+            {% for besoin in avion.besoins.all %}
+                <tr>
+                    {% if forloop.first %}
+                        <td rowspan="{{ avion.besoins.count }}">{{ avion.numero_avion }}</td>
+                    {% endif %}
+                    <td>{{ besoin.materiel }}</td>
+                    <td>{{ besoin.quantite }}</td>
+                    {% if forloop.first %}
+                        <td rowspan="{{ avion.besoins.count }}">
+                            <form action="/print_pdf/" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="avion_id" value="{{ avion.id }}">
+                                <button type="submit" class="imprimer-button">Imprimer</button>
+                            </form>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content%}

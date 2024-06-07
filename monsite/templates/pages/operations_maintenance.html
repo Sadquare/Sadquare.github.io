@@ -1,0 +1,105 @@
+{% extends "bases/base.html" %}
+{% block head %}
+    <title>Tableau de Maintenance</title>
+
+    <style>
+        body {
+            padding-top: 120px; /* Ajustez cette valeur pour correspondre à la hauteur de votre en-tête */
+        }
+        .table_container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            color: black; /* Changement de la couleur du texte en noir */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #dddddd;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .ajouter-button {
+            margin-top: 20px; /* Ajoute une marge supérieure */
+            background-color: #007bff; /* Couleur bleue */
+            color: white;
+            border: 1px solid #007bff; /* Bordure bleue */
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        .ajouter-button:hover {
+            background-color: white;
+            color: #007bff;
+            border-color: #007bff;
+        }
+    </style>
+    {% endblock head %}
+    <{% block content%}
+</head>
+<body>
+    <!-- Dans votre_template.html -->
+    <div class="table_container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Avion</th>
+                    {% for operation in operations %}
+                        <th>{{ operation.nom }}</th>
+                    {% endfor %}
+                    <th>Heures de vol</th>  <!-- Ajout de la colonne pour les heures de vol -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for avion in avions %}
+                    <tr>
+                        <td>{{ avion.numero_avion }}</td>
+                        {% for operation in operations %}
+                            <td>
+                                {% for maintenance_heure in avion.maintenanceheure_set.all %}
+                                    {% if maintenance_heure.operation == operation %}
+                                        <span style="{% if maintenance_heure.difference <= 10 %}color:red{% endif %}">{{ maintenance_heure.heure }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                        {% endfor %}
+                        <td>{{ avion.heure }}</td>  <!-- Affichage des heures de vol -->
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <a href="{% url 'myapp:ajouter_operation' %}" class="ajouter-button">Ajouter une opération</a><br>
+    <a href="{% url 'myapp:ajouter_maintenance' %}" class="ajouter-button">Ajouter une maintenance</a><br>
+    <a href="{% url 'myapp:ajouter_heure_vol' %}" class="ajouter-button">Ajouter heure de vol</a><br>
+
+    {% endblock content%}
